@@ -1,0 +1,14 @@
+#!/bin/bash
+yum install epel-release bash-completion vim wget bzip2 net-tools mlocate ntop -y
+echo alias\ vi=vim >> /etc/bashrc
+bash
+mkdir .ssh
+touch .ssh/authorized_keys
+cat id_rsa.pub >> .ssh/authorized_keys
+sed -i 's/enforcing/disabled/g' /etc/selinux/config /etc/selinux/config
+systemctl stop NetworkManager
+systemctl disable NetworkManager
+systemctl stop firewalld.service
+systemctl disable firewalld.service
+yum update -y
+reboot
