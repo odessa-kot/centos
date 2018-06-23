@@ -1,7 +1,6 @@
 #!/bin/bash
-yum install epel-release bash-completion vim ntp bzip2 net-tools mlocate ntop -y
+yum install epel-release bash-completion vim ntp bzip2 net-tools mlocate -y
 echo alias\ vi=vim >> /etc/bashrc
-bash
 mkdir .ssh
 touch .ssh/authorized_keys
 #cat id_rsa.pub >> .ssh/authorized_keys
@@ -14,4 +13,5 @@ yum update -y
 firewall-cmd --add-service=ntp --permanent
 firewall-cmd --reload
 systemctl start ntpd
+systemctl enable ntpd
 reboot
